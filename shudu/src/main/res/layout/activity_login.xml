@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_30dp"
+    >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_80dp"
+        android:text="欢乐数独"
+        android:textColor="@color/mainColor"
+        android:textSize="@dimen/text_40sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginTop="@dimen/dimen_50dp"
+        android:background="@drawable/bg_text_box"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:src="@drawable/icon_account"/>
+
+        <EditText
+            android:id="@+id/et_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/login_accunt_hint_text"
+            android:inputType="text"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:background="@drawable/bg_text_box"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:src="@drawable/icon_password"/>
+
+        <EditText
+            android:id="@+id/et_user_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/login_password_hint_text"
+            android:inputType="textPassword"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:background="@drawable/bg_btn_login"
+        android:text="@string/login_text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_15dp">
+
+        <TextView
+            android:id="@+id/tv_find_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="忘记密码"
+            android:textColor="#1E78B9"/>
+
+        <TextView
+            android:id="@+id/tv_register_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="left"
+            android:text="注册账户"
+            android:textColor="#1E78B9"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:id="@+id/iv_weibo"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/icon_weibo"/>
+
+        <ImageView
+            android:id="@+id/iv_qq"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_qq"/>
+
+        <ImageView
+            android:id="@+id/iv_weixin"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icon_weixin"/>
+
+    </RelativeLayout>
+</LinearLayout>
