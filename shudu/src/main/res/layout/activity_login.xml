@@ -65,7 +65,8 @@
             android:maxLines="1"/>
     </LinearLayout>
 
-    <Button
+    <TextView
+        android:gravity="center"
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_45dp"

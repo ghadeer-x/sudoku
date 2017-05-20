@@ -30,4 +30,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
+    //添加日志打印依赖
+    compile 'com.apkfuns.logutils:library:1.5.1.1'
+    //图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //圆形图片
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //注入依赖
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }

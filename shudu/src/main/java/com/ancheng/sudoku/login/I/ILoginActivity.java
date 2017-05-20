@@ -1,4 +1,4 @@
-package com.ancheng.sudoku.login.activity.I;
+package com.ancheng.sudoku.login.I;
 
 /**
  * author: ancheng
@@ -7,5 +7,5 @@ package com.ancheng.sudoku.login.activity.I;
  */
 
 public interface ILoginActivity {
-    void login();
+    void isLoginSucess(boolean isLogin);
 }
