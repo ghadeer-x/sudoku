@@ -1,7 +1,5 @@
 package com.ancheng.sudoku.utils;
 
-import android.content.Intent;
-
 /**
  * author: ancheng
  * date: 2017/5/20
@@ -10,7 +8,7 @@ import android.content.Intent;
 
 public class IntentTools {
 
-    public static Intent getFindPwdActivity{
-
-    }
+//    public static Intent getFindPwdActivity{
+//
+//    }
 }
