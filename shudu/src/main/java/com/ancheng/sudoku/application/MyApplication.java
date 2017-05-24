@@ -10,6 +10,9 @@ import android.app.Application;
 
 public class MyApplication extends Application {
 
+    public static boolean isLogin(){
+        return false;
+    }
     @Override
     public void onCreate() {
         super.onCreate();

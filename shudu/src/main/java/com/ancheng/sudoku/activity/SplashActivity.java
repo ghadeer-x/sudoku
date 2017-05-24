@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.ancheng.sudoku.R;
+import com.ancheng.sudoku.application.MyApplication;
+import com.ancheng.sudoku.utils.IntentTools;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -35,8 +37,13 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
-                startActivity(intent);
+                if(MyApplication.isLogin()){
+                    Intent intent = IntentTools.getMainActivityIntent(SplashActivity.this);
+                    startActivity(intent);
+                }else{
+                    Intent intent = IntentTools.getLoginActivityIntent(SplashActivity.this);
+                    startActivity(intent);
+                }
                 finish();
             }
         });

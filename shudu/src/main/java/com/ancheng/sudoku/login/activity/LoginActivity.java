@@ -8,6 +8,7 @@ import android.widget.EditText;
 import com.ancheng.sudoku.R;
 import com.ancheng.sudoku.login.I.ILoginActivity;
 import com.ancheng.sudoku.login.presenter.LoginPresenter;
+import com.ancheng.sudoku.utils.IntentTools;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,14 +36,18 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                mLoginPresenter.login(etUserName.getText().toString().trim(),etUserName.getText().toString().trim());
+               // mLoginPresenter.login(etUserName.getText().toString().trim(),etUserName.getText().toString().trim());
                 //登陆
+                startActivity(IntentTools.getMainActivityIntent(LoginActivity.this));
+                finish();
                 break;
             case R.id.tv_find_pwd:
                 //找回密码
+                startActivity(IntentTools.getForgotPasswordActivityIntent(LoginActivity.this));
                 break;
             case R.id.tv_register_user:
                 //注册用户
+                startActivity(IntentTools.getRegisterAccountActivityIntent(LoginActivity.this));
                 break;
             case R.id.iv_weibo:
                 //微博登陆
@@ -56,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
         }
     }
 
+
     @Override
     public void isLoginSucess(boolean isLogin) {
         if (isLogin) {
@@ -64,5 +70,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
         } else {
             //登陆失败
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
