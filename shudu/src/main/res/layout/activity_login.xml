@@ -37,8 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:hint="@string/login_accunt_hint_text"
-            android:inputType="text"
+            android:hint="请输入手机号或邮箱"
+            android:inputType="number|textEmailAddress"
             android:maxLines="1"/>
     </LinearLayout>
 
@@ -66,12 +66,12 @@
     </LinearLayout>
 
     <TextView
-        android:gravity="center"
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_45dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:background="@drawable/bg_btn_login"
+        android:gravity="center"
         android:text="@string/login_text"
         android:textColor="@color/black"
         android:textSize="@dimen/text_16sp"/>

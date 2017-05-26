@@ -33,12 +33,13 @@
             android:src="@drawable/icon_account"/>
 
         <EditText
-            android:id="@+id/et_user_name"
+            android:id="@+id/et_phone_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:hint="@string/login_accunt_hint_text"
-            android:inputType="text"
+            android:hint="请输入与手机号"
+            android:maxLength="11"
+            android:inputType="number"
             android:maxLines="1"
             android:textSize="16sp"/>
     </LinearLayout>
@@ -57,6 +58,7 @@
             android:src="@drawable/icon_password"/>
 
         <EditText
+            android:maxLength="20"
             android:id="@+id/et_user_pwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -81,10 +83,12 @@
             android:src="@drawable/icon_qr_code"/>
 
         <EditText
+            android:id="@+id/et_validate_code"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@null"
+            android:maxLength="6"
             android:hint="请输入验证码"
             android:inputType="number"
             android:maxLines="1"
@@ -97,6 +101,7 @@
             android:background="@android:color/darker_gray"/>
 
         <TextView
+            android:id="@+id/send_validate_code"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -107,7 +112,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_45dp"
         android:layout_marginTop="@dimen/dimen_20dp"
@@ -124,5 +129,6 @@
         android:shadowColor="@color/black"
         android:text="已阅读《用户协议和隐私条框》"
         android:textColor="@color/colorPrimary"
-        android:textSize="14sp"/>
+        android:textSize="14sp"
+        android:visibility="gone"/>
 </LinearLayout>

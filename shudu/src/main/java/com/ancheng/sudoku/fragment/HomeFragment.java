@@ -19,12 +19,12 @@ import butterknife.OnClick;
  * email: lzjtugjc@163.com
  */
 
-public class homeFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container);
+        View view = inflater.inflate(R.layout.fragment_home, container,false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -33,13 +33,13 @@ public class homeFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_primary:
-                ToastUtils.show(getContext(),"初级");
+                ToastUtils.showShort("初级");
                 break;
             case R.id.tv_middle:
-                ToastUtils.show(getContext(),"初级");
+                ToastUtils.showShort("中级");
                 break;
             case R.id.tv_high:
-                ToastUtils.show(getContext(),"初级");
+                ToastUtils.showShort("高级");
                 break;
         }
     }

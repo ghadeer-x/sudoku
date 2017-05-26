@@ -7,5 +7,5 @@ package com.ancheng.sudoku.login.I;
  */
 
 public interface ILoginActivity {
-    void isLoginSucess(boolean isLogin);
+    void isLoginSucess(boolean isLogin,Object o);
 }

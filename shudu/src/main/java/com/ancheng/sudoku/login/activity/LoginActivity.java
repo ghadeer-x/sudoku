@@ -6,9 +6,13 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.ancheng.sudoku.R;
+import com.ancheng.sudoku.application.MyApplication;
+import com.ancheng.sudoku.constant.InitConstants;
 import com.ancheng.sudoku.login.I.ILoginActivity;
 import com.ancheng.sudoku.login.presenter.LoginPresenter;
 import com.ancheng.sudoku.utils.IntentTools;
+import com.ancheng.sudoku.utils.ToastUtils;
+import com.apkfuns.logutils.LogUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,10 +40,21 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-               // mLoginPresenter.login(etUserName.getText().toString().trim(),etUserName.getText().toString().trim());
-                //登陆
-                startActivity(IntentTools.getMainActivityIntent(LoginActivity.this));
-                finish();
+
+                long lastLoginTime = MyApplication.mSpUtils.getLong(InitConstants.LAST_LOGIN_TIME, 0L);
+                long currentTime = System.currentTimeMillis();
+                long twoDayTime = 2 * 24 * 60 * 60 * 1000;
+
+                LogUtils.d("lastLoginTime = %ld,currentTime = %ld",lastLoginTime,currentTime);
+                if ((currentTime - lastLoginTime) > twoDayTime) {
+                    String number = etUserName.getText().toString().trim();
+                    String password = etUserPwd.getText().toString().trim();
+                    mLoginPresenter.login(number, password);
+                } else {
+                    // 登陆
+                    startActivity(IntentTools.getMainActivityIntent(LoginActivity.this));
+                }
+
                 break;
             case R.id.tv_find_pwd:
                 //找回密码
@@ -63,17 +78,18 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
 
 
     @Override
-    public void isLoginSucess(boolean isLogin) {
-        if (isLogin) {
-            //登陆成功
-
-        } else {
-            //登陆失败
-        }
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void isLoginSucess(boolean isLogin, Object o) {
+        if (isLogin) {
+            startActivity(IntentTools.getMainActivityIntent(this));
+            finish();
+        } else {
+            LogUtils.d(o);
+            ToastUtils.showLong("账号或密码错误！");
+        }
     }
 }
