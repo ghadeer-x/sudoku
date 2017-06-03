@@ -1,6 +1,7 @@
 package com.ancheng.sudoku.model.bean;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobFile;
 
 /**
  * author: ancheng
@@ -8,14 +9,24 @@ import cn.bmob.v3.BmobObject;
  * email: lzjtugjc@163.com
  */
 
-public class User extends BmobObject{
+public class User extends BmobObject {
     private String user_id;
     private String signature;
     private String phone_number;
     private String nickName;
-    private Object iamge;
     private String email;
     private String password;
+    private BmobFile avatar;
+
+    public BmobFile getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(BmobFile avatar) {
+        this.avatar = avatar;
+    }
+
+
 
     public String getPassword() {
         return password;
@@ -55,14 +66,6 @@ public class User extends BmobObject{
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
-    }
-
-    public Object getIamge() {
-        return iamge;
-    }
-
-    public void setIamge(Object image) {
-        this.iamge = image;
     }
 
     public String getEmail() {

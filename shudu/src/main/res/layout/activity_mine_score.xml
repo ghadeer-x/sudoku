@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/mainBackground"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="历史分数"
+            android:textColor="@color/mainColor"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:src="@drawable/icon_left_arrows"/>
+    </RelativeLayout>
+
+    <!--<com.jude.easyrecyclerview.EasyRecyclerView-->
+        <!--android:id="@+id/recyclerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_empty="@layout/view_empty"-->
+        <!--app:layout_progress="@layout/view_progress"-->
+        <!--app:layout_error="@layout/view_error"-->
+        <!--app:recyclerClipToPadding="true"-->
+        <!--app:recyclerPadding="8dp"-->
+        <!--app:recyclerPaddingTop="8dp"-->
+        <!--app:recyclerPaddingBottom="8dp"-->
+        <!--app:recyclerPaddingLeft="8dp"-->
+        <!--app:recyclerPaddingRight="8dp"-->
+        <!--app:scrollbarStyle="insideOverlay"-->
+    <!--/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
+

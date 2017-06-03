@@ -48,12 +48,12 @@ public class RankListFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_all:
-                tvAll.setSelected(false);
-                tvFriends.setSelected(true);
-                break;
-            case R.id.tv_friends:
                 tvAll.setSelected(true);
                 tvFriends.setSelected(false);
+                break;
+            case R.id.tv_friends:
+                tvAll.setSelected(false);
+                tvFriends.setSelected(true);
                 break;
         }
     }

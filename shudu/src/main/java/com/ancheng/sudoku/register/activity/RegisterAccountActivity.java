@@ -1,9 +1,11 @@
 package com.ancheng.sudoku.register.activity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ancheng.sudoku.R;
 import com.ancheng.sudoku.register.I.IRegisterView;
@@ -15,6 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+
 
 public class RegisterAccountActivity extends AppCompatActivity implements IRegisterView {
 
@@ -25,26 +30,40 @@ public class RegisterAccountActivity extends AppCompatActivity implements IRegis
     EditText etUserPwd;
     @BindView(R.id.et_validate_code)
     EditText etValidateCode;
+    @BindView(R.id.send_validate_code)
+    TextView sendValidateCode;
     private RegisterPresenter mRegisterPresenter;
+    private CountDownTimer timer = new CountDownTimer(60000, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            sendValidateCode.setText("重新发送(" + millisUntilFinished / 1000 + "s)");
+        }
 
-//    cn.smssdk.EventHandler eh = new cn.smssdk.EventHandler() {
-//        @Override
-//        public void afterEvent(int event, int result, Object data) {
-//
-//            if (result == SMSSDK.RESULT_COMPLETE) {
-//                //回调完成
-//                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-//                    //提交验证码成功
-//                } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-//                    //获取验证码成功
-//                } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
-//                    //返回支持发送验证码的国家列表
-//                }
-//            } else {
-//                ((Throwable) data).printStackTrace();
-//            }
-//        }
-//    };
+        @Override
+        public void onFinish() {
+            sendValidateCode.setEnabled(true);
+            sendValidateCode.setText("发送验证码");
+        }
+    };
+
+    EventHandler eh = new EventHandler() {
+        @Override
+        public void afterEvent(int event, int result, Object data) {
+
+            if (result == SMSSDK.RESULT_COMPLETE) {
+                //回调完成
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                    //提交验证码成功
+                } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                    //获取验证码成功
+                } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
+                    //返回支持发送验证码的国家列表
+                }
+            } else {
+                ((Throwable) data).printStackTrace();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,20 +71,21 @@ public class RegisterAccountActivity extends AppCompatActivity implements IRegis
         setContentView(R.layout.activity_register_account);
         ButterKnife.bind(this);
         mRegisterPresenter = new RegisterPresenter(this);
-        //SMSSDK.registerEventHandler(eh); //注册短信回调
+        SMSSDK.registerEventHandler(eh); //注册短信回调
     }
 
 
     @OnClick({R.id.send_validate_code, R.id.btn_register})
     public void onViewClicked(View view) {
+        String number = etPhoneNumber.getText().toString().trim();
+        String password = etUserPwd.getText().toString().trim();
+        String code = etValidateCode.toString().trim();
         switch (view.getId()) {
             case R.id.send_validate_code:
+
                 break;
             case R.id.btn_register:
-                String number = etPhoneNumber.getText().toString().trim();
-                String password = etUserPwd.getText().toString().trim();
                 mRegisterPresenter.register(number, password);
-                LogUtils.d("number = %s, password = %s", number, password);
                 break;
         }
     }
@@ -80,7 +100,20 @@ public class RegisterAccountActivity extends AppCompatActivity implements IRegis
     @Override
     public void registerFailure(Exception e) {
         //注册失败
-        LogUtils.d((BmobException)e);
+        LogUtils.d((BmobException) e);
         ToastUtils.showLong("注册失败");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SMSSDK.registerEventHandler(eh); //注册短信回调
+        timer.cancel();
+    }
+
+    @OnClick(R.id.send_validate_code)
+    public void onViewClicked() {
+        sendValidateCode.setEnabled(false);
+        timer.start();
     }
 }

@@ -1,18 +1,18 @@
 package com.ancheng.sudoku.login.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import com.ancheng.sudoku.R;
-import com.ancheng.sudoku.application.MyApplication;
-import com.ancheng.sudoku.constant.InitConstants;
 import com.ancheng.sudoku.login.I.ILoginActivity;
 import com.ancheng.sudoku.login.presenter.LoginPresenter;
 import com.ancheng.sudoku.utils.IntentTools;
 import com.ancheng.sudoku.utils.ToastUtils;
 import com.apkfuns.logutils.LogUtils;
+import com.jaeger.library.StatusBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+        StatusBarUtil.setColor(this, Color.BLACK);
         mLoginPresenter = new LoginPresenter(this);
 
     }
@@ -40,21 +40,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-
-                long lastLoginTime = MyApplication.mSpUtils.getLong(InitConstants.LAST_LOGIN_TIME, 0L);
-                long currentTime = System.currentTimeMillis();
-                long twoDayTime = 2 * 24 * 60 * 60 * 1000;
-
-                LogUtils.d("lastLoginTime = %ld,currentTime = %ld",lastLoginTime,currentTime);
-                if ((currentTime - lastLoginTime) > twoDayTime) {
-                    String number = etUserName.getText().toString().trim();
-                    String password = etUserPwd.getText().toString().trim();
-                    mLoginPresenter.login(number, password);
-                } else {
-                    // 登陆
-                    startActivity(IntentTools.getMainActivityIntent(LoginActivity.this));
-                }
-
+                String number = etUserName.getText().toString().trim();
+                String password = etUserPwd.getText().toString().trim();
+                mLoginPresenter.login(number, password);
                 break;
             case R.id.tv_find_pwd:
                 //找回密码

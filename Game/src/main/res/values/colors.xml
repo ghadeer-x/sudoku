@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<color name="im_number_button_completed_text">#ff335e6c</color>
+	<color name="im_number_button_selected_background">#f0b32a</color>
+
+	<color name="colorPrimary">#3F51B5</color>
+	<color name="colorPrimaryDark">#303F9F</color>
+	<color name="colorAccent">#FF4081</color>
+
+	<color name="mainBackground">#F0F0F0</color>
+	<color name="mainColor">#EB5B3F</color>
+	<color name="white">#FFFFFF</color>
+	<color name="black">#000000</color>
+
+	<color name="c_e6e6e6">#E6E6E6</color>
+</resources>

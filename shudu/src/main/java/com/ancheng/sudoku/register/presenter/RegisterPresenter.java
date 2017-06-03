@@ -3,6 +3,8 @@ package com.ancheng.sudoku.register.presenter;
 import com.ancheng.sudoku.model.bean.User;
 import com.ancheng.sudoku.register.I.IRegisterView;
 import com.ancheng.sudoku.utils.MD5Utils;
+import com.ancheng.sudoku.utils.RegexUtils;
+import com.ancheng.sudoku.utils.ToastUtils;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -23,6 +25,10 @@ public class RegisterPresenter {
 
     public void register(String number, String password) {
         String uid = MD5Utils.strToMD5(number);
+        if(!RegexUtils.isMobileExact(number)){
+            ToastUtils.showLong("手机号格式有误，请重新输入");
+            return;
+        }
         //添加数据到数据库中
         User user = new User();
         user.setUser_id(uid);

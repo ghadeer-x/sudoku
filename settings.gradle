@@ -1,1 +1,1 @@
-include ':shudu'
+include ':shudu', ':Game'

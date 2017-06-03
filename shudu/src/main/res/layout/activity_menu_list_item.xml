@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <cz.romario.opensudoku.gui.SudokuBoardView
+        android:id="@+id/sudoku_board"
+        android:layout_width="100dp"
+        app:lineColor="@color/mainColor"
+        app:textColor="@color/black"
+        android:layout_height="100dp"
+        android:layout_marginRight="4dp"
+        app:backgroundColor="@color/white"
+        />
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="8sp"
+        android:layout_toRightOf="@+id/state"
+        android:gravity="right"
+        android:text="time"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/sudoku_board"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="游戏状态"
+            android:textColor="@color/mainColor"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/last_played"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="最后一次玩的时间"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+</RelativeLayout>

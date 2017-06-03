@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="4sp">
+
+    <cz.romario.opensudoku.gui.SudokuBoardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sudoku_board"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_marginRight="4sp"
+        app:lineColor="@color/mainColor"
+        app:sectorLineColor="@color/mainColor"
+        />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/sudoku_board"
+        android:text="state"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#333333"
+        />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="8sp"
+        android:layout_toRightOf="@+id/state"
+        android:gravity="right"
+        android:text="time"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#333333"
+        />
+
+    <TextView
+        android:id="@+id/last_played"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/state"
+        android:layout_marginTop="4sp"
+        android:layout_toRightOf="@+id/sudoku_board"
+        android:text="last_played"
+        android:textColor="#333333"
+        />
+
+    <TextView
+        android:id="@+id/created"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/last_played"
+        android:layout_toRightOf="@+id/sudoku_board"
+        android:text="created"
+        android:textColor="#333333"
+        />
+
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/created"
+        android:layout_toRightOf="@+id/sudoku_board"
+        android:text="note"
+        android:textColor="#333333"
+        />
+</RelativeLayout>

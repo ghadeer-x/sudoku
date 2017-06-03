@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Game/Game.iml" filepath="$PROJECT_DIR$/Game/Game.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sudoku.iml" filepath="$PROJECT_DIR$/Sudoku.iml" />
       <module fileurl="file://$PROJECT_DIR$/shudu/shudu.iml" filepath="$PROJECT_DIR$/shudu/shudu.iml" />
     </modules>
