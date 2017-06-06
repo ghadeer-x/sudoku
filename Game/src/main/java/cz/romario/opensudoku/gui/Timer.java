@@ -39,8 +39,7 @@ import android.os.SystemClock;
 /**
  * This class implements a simple periodic timer.
  */
-abstract class Timer
-		extends Handler {
+public abstract class Timer extends Handler {
 
 	// ******************************************************************** //
 	// Constructor.
@@ -203,7 +202,7 @@ abstract class Timer
 	 * @param    outState        A Bundle in which to place any state
 	 * information we wish to save.
 	 */
-	void saveState(Bundle outState) {
+	public void saveState(Bundle outState) {
 		// Accumulate all time up to now, so we know where we're saving.
 		if (mIsRunning) {
 			long now = SystemClock.uptimeMillis();
@@ -227,7 +226,7 @@ abstract class Timer
 	 * if the saved state was incompatible with the
 	 * current configuration.
 	 */
-	boolean restoreState(Bundle map) {
+	public boolean restoreState(Bundle map) {
 		return restoreState(map, true);
 	}
 

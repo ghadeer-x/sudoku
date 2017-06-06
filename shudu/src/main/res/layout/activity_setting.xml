@@ -76,6 +76,7 @@
             android:textColor="#333333"
             android:textSize="16sp"/>
         <TextView
+            android:id="@+id/tv_music_name"
             android:layout_marginLeft="15dp"
             android:layout_toLeftOf="@+id/iv_arrow"
             android:layout_toRightOf="@+id/tv_music"

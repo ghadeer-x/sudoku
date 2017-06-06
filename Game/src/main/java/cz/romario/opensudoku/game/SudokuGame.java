@@ -22,12 +22,14 @@ package cz.romario.opensudoku.game;
 
 import android.os.Bundle;
 import android.os.SystemClock;
-import cz.romario.opensudoku.game.command.ClearAllNotesCommand;
+
 import cz.romario.opensudoku.game.command.AbstractCommand;
+import cz.romario.opensudoku.game.command.ClearAllNotesCommand;
 import cz.romario.opensudoku.game.command.CommandStack;
 import cz.romario.opensudoku.game.command.EditCellNoteCommand;
 import cz.romario.opensudoku.game.command.FillInNotesCommand;
 import cz.romario.opensudoku.game.command.SetCellValueCommand;
+import cz.romario.opensudoku.gui.OnPuzzleSolvedListener;
 
 public class SudokuGame {
 
@@ -317,15 +319,6 @@ public class SudokuGame {
 
 	public void validate() {
 		mCells.validate();
-	}
-
-	public interface OnPuzzleSolvedListener {
-		/**
-		 * Occurs when puzzle is solved.
-		 *
-		 * @return
-		 */
-		void onPuzzleSolved();
 	}
 
 }

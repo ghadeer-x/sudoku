@@ -82,12 +82,19 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
 
             if (avatar != null){
                 LogUtils.tag(TAG).d("imageUrl : " + avatar.getUrl());
+                Glide.with(mContext)
+                        .load(avatar.getFileUrl())
+                        .error(R.mipmap.default_image)
+                        .into(civAvatar);
+            }else{
+                civAvatar.setImageResource(R.drawable.avatar1);
             }
 
-            Glide.with(mContext)
-                    .load(avatar.getUrl())
-                    .error(R.mipmap.default_image)
-                    .into(civAvatar);
+
+//            Glide.with(mContext)
+//                    .load(avatar.getUrl())
+//                    .error(R.mipmap.default_image)
+//                    .into(civAvatar);
 
             if (TextUtils.isEmpty(nickName)) {
                 tvNickName.setText("数独大师");

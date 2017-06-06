@@ -4,17 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.ancheng.sudoku.activity.EmailSetActivity;
-import com.ancheng.sudoku.activity.GameMenuListActivity;
+import com.ancheng.sudoku.activity.GameListActivity;
+import com.ancheng.sudoku.activity.GameViewActivity;
 import com.ancheng.sudoku.activity.HelpActivity;
 import com.ancheng.sudoku.activity.MainActivity;
 import com.ancheng.sudoku.activity.MineInfoActivity;
 import com.ancheng.sudoku.activity.MineScoreActivity;
+import com.ancheng.sudoku.activity.MusicListActivity;
 import com.ancheng.sudoku.activity.NickNameSetActivity;
 import com.ancheng.sudoku.activity.SettingActivity;
 import com.ancheng.sudoku.activity.SignatureSetActivity;
+import com.ancheng.sudoku.constant.GameConstant;
 import com.ancheng.sudoku.forgotpassword.activity.ForgotPasswordActivity;
 import com.ancheng.sudoku.login.activity.LoginActivity;
 import com.ancheng.sudoku.register.activity.RegisterAccountActivity;
+
+import cz.romario.opensudoku.gui.SudokuListActivity;
 
 /**
  * author: ancheng
@@ -97,12 +102,12 @@ public class IntentTools {
         return intent;
     }
 
-    public static Intent getGameMenuListActivityIntent(Context context, int level) {
-        Intent intent = new Intent();
-        intent.putExtra("level", level);
-        intent.setClass(context, GameMenuListActivity.class);
-        return intent;
-    }
+//    public static Intent getGameMenuListActivityIntent(Context context, int level) {
+//        Intent intent = new Intent();
+//        intent.putExtra("level", level);
+//        intent.setClass(context, GameMenuListActivity1.class);
+//        return intent;
+//    }
 
 
 //    Intent i = new Intent(this, SudokuListActivity.class);
@@ -142,12 +147,46 @@ public class IntentTools {
 
     /**
      * 更改签名信息
+     *
      * @param context
      * @return
      */
     public static Intent getSignatureSetActivityIntent(Context context) {
         Intent intent = new Intent();
         intent.setClass(context, SignatureSetActivity.class);
+        return intent;
+    }
+
+    /**
+     * 游戏列表
+     */
+    public static Intent getGameMenuListActivityIntent(Context context, Long floderId) {
+        Intent intent = new Intent();
+        intent.putExtra(SudokuListActivity.EXTRA_FOLDER_ID, floderId);
+        intent.setClass(context, GameListActivity.class);
+        return intent;
+    }
+
+
+    /**
+     * 游戏列表
+     */
+    public static Intent getGameViewActivityIntent(Context context, long gameLevel, long gameId, int position) {
+        Intent intent = new Intent();
+        intent.putExtra(GameConstant.GAME_LEVEL, gameLevel);
+        intent.putExtra(GameViewActivity.EXTRA_SUDOKU_ID, gameId);
+        intent.putExtra(GameConstant.GAME_ID, position);
+        intent.setClass(context, GameViewActivity.class);
+        return intent;
+    }
+
+
+    /**
+     * 游戏列表
+     */
+    public static Intent getMusicListActivityIntent(Context context) {
+        Intent intent = new Intent();
+        intent.setClass(context, MusicListActivity.class);
         return intent;
     }
 }

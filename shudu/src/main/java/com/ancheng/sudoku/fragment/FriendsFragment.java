@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,8 +70,30 @@ public class FriendsFragment extends Fragment {
     }
 
     private void loadData() {
-        List<Friend_Relation> friendRelationLists = new ArrayList<>();
+//
+//        LogUtils.tag(TAG).d("查询数据");
+//        final String userId = UserManager.getInstance().getUser_id();
+//        BmobQuery<User> bmobQuery = new BmobQuery<>();
+//        Friend_Relation friend_relation = new Friend_Relation();
+//        friend_relation.setUserId(userId);
+//        bmobQuery.addWhereRelatedTo("userId", new BmobPointer(friend_relation));
+//        bmobQuery.findObjects(new FindListener<User>() {
+//            @Override
+//            public void done(List<User> list, BmobException e) {
+//                if (e == null) {
+//                    mUserList.clear();
+//                    mUserList.addAll(list);
+//                    LogUtils.tag(TAG).d(list);
+//                    mFriendListAdapter.notifyDataSetChanged();
+//                } else {
+//                    ToastUtils.showLong("请检查网络！");
+//                    LogUtils.tag(TAG).d(e);
+//                }
+//            }
+//        });
+
         final String userId = UserManager.getInstance().getUser_id();
+        List<Friend_Relation> friendRelationLists = new ArrayList<>();
         BmobQuery<Friend_Relation> eq1 = new BmobQuery<>();
         eq1.addWhereEqualTo("userId", userId);
         BmobQuery<Friend_Relation> eq2 = new BmobQuery<>();
@@ -84,6 +107,7 @@ public class FriendsFragment extends Fragment {
             @Override
             public void done(List<Friend_Relation> list, BmobException e) {
                 if (e == null) {
+                    LogUtils.tag(TAG).d("查询成功：" + list.toString());
                     mUserList.clear();
                     //查询成功
                     for (int i = 0; i < list.size(); i++) {
@@ -91,13 +115,17 @@ public class FriendsFragment extends Fragment {
                         String userId1 = friend_relation.getUserId();
                         String friendId = friend_relation.getFriendId();
                         String queryId = null;
-                        if (userId.equals(userId1)) {
+//                        LogUtils.tag(TAG).d("userID : " + userId);
+//                        LogUtils.tag(TAG).d("userId1 : " + userId1);
+//                        LogUtils.tag(TAG).d("friendId : " + friendId);
+                        if (TextUtils.equals(userId,userId1)) {
                             queryId = friendId;
                         } else {
-                            queryId = userId;
+                            queryId = userId1;
                         }
+//                        LogUtils.tag(TAG).d("queryId : " + queryId);
                         BmobQuery<User> query = new BmobQuery<>();
-                        query.addWhereEqualTo("userId", queryId);
+                        query.addWhereEqualTo("user_id", queryId);
                         query.findObjects(new FindListener<User>() {
                             @Override
                             public void done(List<User> list, BmobException e) {
@@ -105,7 +133,7 @@ public class FriendsFragment extends Fragment {
                                     //更新成功
                                     if (list.size() != 0) {
                                         mUserList.add(list.get(0));
-                                        LogUtils.tag(TAG).d(list);
+                                        LogUtils.tag(TAG).d("好友列表" + list.get(0).getPhone_number());
                                         mFriendListAdapter.notifyDataSetChanged();
                                     }
                                 } else {

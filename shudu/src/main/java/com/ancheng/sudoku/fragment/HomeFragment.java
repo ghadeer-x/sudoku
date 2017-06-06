@@ -1,6 +1,5 @@
 package com.ancheng.sudoku.fragment;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ancheng.sudoku.R;
+import com.ancheng.sudoku.utils.IntentTools;
 import com.apkfuns.logutils.LogUtils;
 
 import java.util.ArrayList;
@@ -20,7 +20,6 @@ import butterknife.OnClick;
 import cz.romario.opensudoku.db.FolderColumns;
 import cz.romario.opensudoku.db.SudokuDatabase;
 import cz.romario.opensudoku.game.FolderInfo;
-import cz.romario.opensudoku.gui.SudokuListActivity;
 
 import static cn.bmob.v3.Bmob.getApplicationContext;
 
@@ -77,23 +76,26 @@ public class HomeFragment extends Fragment {
             case R.id.tv_primary:
                 //ToastUtils.showShort("初级");
 //                startActivity(IntentTools.getGameMenuListActivityIntent(getContext(), 1));
-                Intent i = new Intent(getContext(), SudokuListActivity.class);
-                i.putExtra(SudokuListActivity.EXTRA_FOLDER_ID, mFolderInfos.get(0).id);
-                startActivity(i);
+//                Intent i = new Intent(getContext(), SudokuListActivity.class);
+//                i.putExtra(SudokuListActivity.EXTRA_FOLDER_ID, mFolderInfos.get(0).id);
+//                startActivity(i);
+                startActivity(IntentTools.getGameMenuListActivityIntent(getContext(),mFolderInfos.get(0).id));
                 break;
             case R.id.tv_middle:
                 //ToastUtils.showShort("中级");
 //                startActivity(IntentTools.getGameMenuListActivityIntent(getContext(), 2));
-                Intent i1 = new Intent(getContext(), SudokuListActivity.class);
-                i1.putExtra(SudokuListActivity.EXTRA_FOLDER_ID, mFolderInfos.get(1).id);
-                startActivity(i1);
+//                Intent i1 = new Intent(getContext(), SudokuListActivity.class);
+//                i1.putExtra(SudokuListActivity.EXTRA_FOLDER_ID, mFolderInfos.get(1).id);
+//                startActivity(i1);
+                startActivity(IntentTools.getGameMenuListActivityIntent(getContext(),mFolderInfos.get(1).id));
                 break;
             case R.id.tv_high:
                 //ToastUtils.showShort("高级");
 //                 startActivity(IntentTools.getGameMenuListActivityIntent(getContext(), 3));
-                Intent i2 = new Intent(getContext(), SudokuListActivity.class);
-                i2.putExtra(SudokuListActivity.EXTRA_FOLDER_ID, mFolderInfos.get(2).id);
-                startActivity(i2);
+//                Intent i2 = new Intent(getContext(), SudokuListActivity.class);
+//                i2.putExtra(SudokuListActivity.EXTRA_FOLDER_ID, mFolderInfos.get(2).id);
+//                startActivity(i2);
+                startActivity(IntentTools.getGameMenuListActivityIntent(getContext(),mFolderInfos.get(2).id));
                 break;
         }
     }

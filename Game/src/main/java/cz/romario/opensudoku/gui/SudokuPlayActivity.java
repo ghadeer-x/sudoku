@@ -38,10 +38,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
 import cz.romario.opensudoku.R;
 import cz.romario.opensudoku.db.SudokuDatabase;
 import cz.romario.opensudoku.game.SudokuGame;
-import cz.romario.opensudoku.game.SudokuGame.OnPuzzleSolvedListener;
 import cz.romario.opensudoku.gui.inputmethod.IMControlPanel;
 import cz.romario.opensudoku.gui.inputmethod.IMControlPanelStatePersister;
 import cz.romario.opensudoku.gui.inputmethod.IMNumpad;
@@ -126,7 +126,6 @@ public class SudokuPlayActivity extends Activity {
 		mDatabase = new SudokuDatabase(getApplicationContext());
 		mHintsQueue = new HintsQueue(this);
 		mGameTimer = new GameTimer();
-
 		mGuiHandler = new Handler();
 
 		// create sudoku game instance
@@ -233,6 +232,7 @@ public class SudokuPlayActivity extends Activity {
 		super.onPause();
 
 		// we will save game to the database as we might not be able to get back
+		mSudokuGame.setLastPlayed(System.currentTimeMillis());
 		mDatabase.updateSudoku(mSudokuGame);
 
 		mGameTimer.stop();
@@ -459,7 +459,6 @@ public class SudokuPlayActivity extends Activity {
 		} else {
 			setTitle(R.string.app_name);
 		}
-
 	}
 
 	// This class implements the game clock.  All it does is update the

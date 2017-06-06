@@ -30,6 +30,24 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+
+    <!-- Required -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -76,19 +94,73 @@
         </activity>
         <activity android:name=".activity.SettingActivity">
         </activity>
-        <activity android:name=".activity.GameMenuListActivity">
-        </activity>
         <activity android:name=".activity.GameViewActivity">
         </activity>
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
             android:theme="@style/ImagePickerThemeFullScreen"/>
-        <activity android:name=".activity.NickNameSetActivity">
+        <activity
+            android:name=".activity.NickNameSetActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.EmailSetActivity">
+        <activity
+            android:name=".activity.EmailSetActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.SignatureSetActivity">
+        <activity
+            android:name=".activity.SignatureSetActivity"
+            android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".activity.GameListActivity"
+            android:screenOrientation="portrait"/>
+
+        <service android:name=".service.MusicService"/>
+
+        <activity android:name=".activity.MusicListActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent你的AppId" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data android:name="EASEMOB_APPKEY"  android:value="1173170606178941#sudoku" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <service android:name="com.hyphenate.chat.EMJobService"
+                 android:permission="android.permission.BIND_JOB_SERVICE"
+                 android:exported="true"
+            />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

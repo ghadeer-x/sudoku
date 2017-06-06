@@ -3,13 +3,14 @@ package com.ancheng.sudoku.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ancheng.sudoku.R;
-import com.ancheng.sudoku.application.MyApplication;
-import com.ancheng.sudoku.constant.GameSettingConstants;
-import com.ancheng.sudoku.utils.ToastUtils;
+import com.ancheng.sudoku.constant.GameSetting;
+import com.ancheng.sudoku.utils.IntentTools;
 import com.jaeger.library.StatusBarUtil;
 import com.suke.widget.SwitchButton;
 
@@ -23,6 +24,8 @@ public class SettingActivity extends AppCompatActivity {
     SwitchButton switchButton;
     @BindView(R.id.rl_select_music)
     RelativeLayout rlSelectMusic;
+    @BindView(R.id.tv_music_name)
+    TextView tvMusicName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,26 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
         StatusBarUtil.setColor(this, Color.BLACK);
+
+        initView();
         initListener();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String musicName = GameSetting.getMusicName();
+        String musicPath = GameSetting.getMusicPath();
+        if (TextUtils.isEmpty(musicPath)) {
+            tvMusicName.setVisibility(View.INVISIBLE);
+        }else{
+            tvMusicName.setVisibility(View.VISIBLE);
+            tvMusicName.setText(musicName);
+        }
+    }
+
+    private void initView() {
+        switchButton.setChecked(GameSetting.isOpenMusicSwitch());
     }
 
     private void initListener() {
@@ -38,11 +60,9 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if (isChecked) {
-//                    ToastUtils.showShort("打开");
-                    MyApplication.mSpUtils.put(GameSettingConstants.IS_OPEN_BG_MUSIC, true);
+                    GameSetting.openMusic();
                 } else {
-//                    ToastUtils.showShort("关闭");
-                    MyApplication.mSpUtils.put(GameSettingConstants.IS_OPEN_BG_MUSIC, false);
+                    GameSetting.closeMusic();
                 }
             }
         });
@@ -56,7 +76,8 @@ public class SettingActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.rl_select_music:
-                ToastUtils.showShort("选择音乐");
+                //    ToastUtils.showShort("选择音乐");
+                startActivity(IntentTools.getMusicListActivityIntent(this));
                 break;
         }
     }

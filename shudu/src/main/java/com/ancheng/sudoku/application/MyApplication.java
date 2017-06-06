@@ -10,6 +10,8 @@ import com.ancheng.sudoku.utils.GlideImageLoader;
 import com.ancheng.sudoku.utils.SPUtils;
 import com.ancheng.sudoku.utils.Utils;
 import com.apkfuns.logutils.LogUtils;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMOptions;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
 
@@ -63,12 +65,19 @@ public class MyApplication extends Application {
         initShareSDK();
         Utils.init(getApplicationContext());
         mSpUtils = new SPUtils(getClass().getName());
-
         LogUtils.getLogConfig()
                 .configAllowLog(true)
                 .configTagPrefix("Sudoku")
                 .configShowBorders(true)
                 .configFormatTag("%d{HH:mm:ss:SSS} %t %c{-5}");
+
+        EMOptions options = new EMOptions();
+        // 默认添加好友时，是不需要验证的，改成需要验证
+        //options.setAcceptInvitationAlways(false);
+        //初始化
+        EMClient.getInstance().init(getApplicationContext(), options);
+        //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
+        EMClient.getInstance().setDebugMode(true);
     }
 
     /**
@@ -111,6 +120,7 @@ public class MyApplication extends Application {
     }
 
     private void initShareSDK() {
-        SMSSDK.initSDK(this, "1e2d14e70bb54", "2102a4e2f011ca6d9cd230ed1766439b");
+
+        SMSSDK.initSDK(this, "1daf43c8aa81e", "60fe2c29328cd430e0a04d07e1439a18");
     }
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mainBackground"
+    android:padding="10dp"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"/>
+
+    <LinearLayout
+        android:id="@+id/ll_score_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_ranking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="名次"
+            android:textColor="@color/mainColor"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:maxLines="2"
+            android:text="成绩"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_toLeftOf="@+id/ll_score_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/civ_avatar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_nick_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="昵称"
+            android:textColor="#333333"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:maxLines="2"
+            android:text="签名"
+            android:textSize="12sp"/>
+    </LinearLayout>
+</RelativeLayout>
