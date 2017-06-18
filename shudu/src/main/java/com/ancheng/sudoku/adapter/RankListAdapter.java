@@ -10,12 +10,9 @@ import android.widget.TextView;
 
 import com.ancheng.sudoku.R;
 import com.ancheng.sudoku.model.bean.RankInfo;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -57,20 +54,19 @@ public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.RankLi
     }
 
     public class RankListViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.civ_avatar)
         CircleImageView civAvatar;
-        @BindView(R.id.tv_ranking)
         TextView tvRanking;
-        @BindView(R.id.tv_score)
         TextView tvScore;
-        @BindView(R.id.tv_nick_name)
         TextView tvNickName;
-        @BindView(R.id.tv_signature)
         TextView tvSignature;
 
         public RankListViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            civAvatar = (CircleImageView) itemView.findViewById(R.id.civ_avatar);
+            tvRanking= (TextView) itemView.findViewById(R.id.tv_ranking);
+            tvScore = (TextView) itemView.findViewById(R.id.tv_score);
+            tvNickName = (TextView) itemView.findViewById(R.id.tv_nick_name);
+            tvSignature = (TextView) itemView.findViewById(R.id.tv_signature);
         }
 
         public void bingData(List<RankInfo> rankInfos, int position) {
@@ -80,10 +76,15 @@ public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.RankLi
             String signature = rankInfo.getUser().getSignature();
             int score = rankInfo.getScore();
 
-            Glide.with(mContext)
-                    .load(rankInfo.getUser().getAvatar().getFileUrl())
-                    .error(R.drawable.avatar1)
-                    .into(civAvatar);
+            civAvatar.setImageResource(R.drawable.avatar1);
+//            if (rankInfo.getUser().getAvatar() == null) {
+//
+//            } else {
+//                Glide.with(mContext)
+//                        .load(rankInfo.getUser().getAvatar().getFileUrl())
+//                        .error(R.drawable.avatar1)
+//                        .into(civAvatar);
+//            }
             if (TextUtils.isEmpty(nickName)) {
                 tvNickName.setText("数独大师");
             } else {
@@ -103,7 +104,7 @@ public class RankListAdapter extends RecyclerView.Adapter<RankListAdapter.RankLi
             } else {
                 tvScore.setText(score + "");
             }
-            tvRanking.setText(position + 1);
+            tvRanking.setText(position + 1 + "");
         }
     }
 }

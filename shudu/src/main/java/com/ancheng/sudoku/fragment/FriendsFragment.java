@@ -10,12 +10,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ancheng.sudoku.R;
 import com.ancheng.sudoku.adapter.FriendListAdapter;
 import com.ancheng.sudoku.model.UserManager;
 import com.ancheng.sudoku.model.bean.Friend_Relation;
 import com.ancheng.sudoku.model.bean.User;
+import com.ancheng.sudoku.utils.IntentTools;
 import com.apkfuns.logutils.LogUtils;
 
 import java.util.ArrayList;
@@ -38,11 +40,14 @@ public class FriendsFragment extends Fragment {
 
     @BindView(R.id.lv_friend_list)
     RecyclerView lvFriendList;
+    @BindView(R.id.tv_add_friend)
+    TextView tvAddFriend;
     Unbinder unbinder;
     private List<User> mUserList;
     private Context mContext;
     private FriendListAdapter mFriendListAdapter;
     private static final String TAG = "FriendsFragment";
+
 
     @Nullable
     @Override
@@ -60,7 +65,17 @@ public class FriendsFragment extends Fragment {
         lvFriendList.setLayoutManager(new LinearLayoutManager(mContext));
         mFriendListAdapter = new FriendListAdapter(mUserList, getContext());
         lvFriendList.setAdapter(mFriendListAdapter);
+        initListener();
+    }
 
+    private void initListener() {
+        tvAddFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //进入添加好友界面
+                startActivity(IntentTools.getAddFriendActivity(getContext()));
+            }
+        });
     }
 
     @Override

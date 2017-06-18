@@ -15,13 +15,17 @@ import com.ancheng.sudoku.utils.IntentTools;
 import com.ancheng.sudoku.utils.ToastUtils;
 import com.apkfuns.logutils.LogUtils;
 import com.jaeger.library.StatusBarUtil;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.provider.UserDictionary.Words.APP_ID;
 
 public class LoginActivity extends AppCompatActivity implements ILoginActivity {
 
@@ -32,23 +36,26 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
     private LoginPresenter mLoginPresenter;
     private Tencent mTencent;
     private static final String TAG = "LoginActivity";
-
+    BaseUiListener loglistener = new BaseUiListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         StatusBarUtil.setColor(this, Color.BLACK);
+        mTencent = Tencent.createInstance(GameConstant.TENCEN_APP_ID, this);
         mLoginPresenter = new LoginPresenter(this);
         initTencent();
 
     }
+
     private void initTencent() {
         // Tencent类是SDK的主要实现类，开发者可通过Tencent类访问腾讯开放的OpenAPI。
         // 其中APP_ID是分配给第三方应用的appid，类型为String。
-        mTencent = Tencent.createInstance(APP_ID, this.getApplicationContext());
+        mTencent = Tencent.createInstance(GameConstant.TENCEN_APP_ID, this.getApplicationContext());
         // 1.4版本:此处需新增参数，传入应用程序的全局context，可通过activity的getApplicationContext方法获取
     }
+
     @OnClick({R.id.btn_login, R.id.tv_find_pwd, R.id.tv_register_user, R.id.iv_weibo, R.id.iv_qq, R.id.iv_weixin})
     public void onClick(View view) {
         String number = etUserName.getText().toString().trim();
@@ -80,10 +87,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
     }
 
     private void tencentLogin() {
-        mTencent = Tencent.createInstance(GameConstant.TENCEN_APP_ID, this);
-        if (!mTencent.isSessionValid())
-        {
-            mTencent.login(this, Scope, listener);
+        if (!mTencent.isSessionValid()) {
+           mTencent.login(this,"all",loglistener);
         }
     }
 
@@ -105,6 +110,58 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mTencent.onActivityResult(requestCode, resultCode, data);
+
+//        mTencent.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.REQUEST_LOGIN ||
+                requestCode == Constants.REQUEST_APPBAR) {
+            Tencent.onActivityResultData(requestCode,resultCode,data,loglistener);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private class BaseUiListener implements IUiListener {
+
+        @Override
+        public void onComplete(Object response) {
+//            LogUtils.tag(TAG).d("登陆成功");
+            if (response == null) {
+                ToastUtils.showLongSafe("登陆失败");
+                LogUtils.tag(TAG).d("返回为空，登陆失败：");
+                return;
+            }
+            JSONObject jsonResponse = (JSONObject) response;
+            if (jsonResponse != null && jsonResponse.length() == 0) {
+                ToastUtils.showLongSafe("登陆失败");
+                LogUtils.tag(TAG).d("返回为空，登陆失败：");
+                return;
+            }
+//            ToastUtils.showLongSafe("登陆成功");
+            //登陆成功
+            JSONObject json = (JSONObject) response;
+            if (json.has("expires_in")) {
+                try {
+                    String expires_in = json.getString("expires_in");
+                    LogUtils.tag(TAG).d(expires_in);
+                    LogUtils.tag(TAG).d(json);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            startActivity(IntentTools.getMainActivityIntent(LoginActivity.this));
+            finish();
+        }
+
+        @Override
+
+        public void onError(UiError e) {
+
+        }
+
+        @Override
+
+        public void onCancel() {
+
+        }
+
     }
 }

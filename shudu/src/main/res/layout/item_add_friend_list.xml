@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:layout_marginTop="1dp"
+    android:background="@color/white"
     android:padding="10dp"
     >
 
@@ -24,29 +24,21 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_ranking"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="名次"
-            android:textColor="@color/mainColor"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tv_score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:maxLines="2"
-            android:text="成绩"
-            android:textSize="12sp"/>
+            android:id="@+id/tv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="添加"
+            android:textColor="@color/mainColor"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_toLeftOf="@+id/ll_score_level"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
+        android:layout_toLeftOf="@+id/ll_score_level"
         android:layout_toRightOf="@+id/civ_avatar"
         android:orientation="vertical">
 

@@ -21,5 +21,5 @@ public class GameConstant {
     public static final String BG_MUSIC_NAME = "bgMusicName";
 
     //TODO
-    public static final String TENCEN_APP_ID = "";
+    public static final String TENCEN_APP_ID = "101408140";
 }

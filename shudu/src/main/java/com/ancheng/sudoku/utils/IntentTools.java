@@ -3,6 +3,7 @@ package com.ancheng.sudoku.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.ancheng.sudoku.activity.AddFriendActivity;
 import com.ancheng.sudoku.activity.EmailSetActivity;
 import com.ancheng.sudoku.activity.GameListActivity;
 import com.ancheng.sudoku.activity.GameViewActivity;
@@ -187,6 +188,15 @@ public class IntentTools {
     public static Intent getMusicListActivityIntent(Context context) {
         Intent intent = new Intent();
         intent.setClass(context, MusicListActivity.class);
+        return intent;
+    }
+
+    /**
+     * 添加好友
+     */
+    public static Intent getAddFriendActivity(Context context) {
+        Intent intent = new Intent();
+        intent.setClass(context, AddFriendActivity.class);
         return intent;
     }
 }

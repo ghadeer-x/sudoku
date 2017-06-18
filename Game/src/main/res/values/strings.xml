@@ -88,9 +88,9 @@
 	<string name="numpad_move_right_summary">Moves cell selection by one cell right when number button is pressed.
 	</string>
 
-	<string name="numpad_abbr">Num\nPad</string>
-	<string name="popup_abbr">Pop</string>
-	<string name="single_number_abbr">SN</string>
+	<string name="numpad_abbr">数字\n键盘</string>
+	<string name="popup_abbr">弹出</string>
+	<string name="single_number_abbr">单个数字</string>
 	<string name="welcome">Welcome</string>
 	<string name="hint">Hint</string>
 	<string name="help">Help</string>

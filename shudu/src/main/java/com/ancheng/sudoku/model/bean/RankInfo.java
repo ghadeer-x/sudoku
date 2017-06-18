@@ -1,12 +1,14 @@
 package com.ancheng.sudoku.model.bean;
 
+import android.support.annotation.NonNull;
+
 /**
  * author: ancheng
  * date: 2017/6/5
  * email: lzjtugjc@163.com
  */
 
-public class RankInfo {
+public class RankInfo implements Comparable<RankInfo>{
     private User user;
     private int score;
 
@@ -32,5 +34,10 @@ public class RankInfo {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    @Override
+    public int compareTo(@NonNull RankInfo o) {
+        return this.getScore() - o.getScore();
     }
 }

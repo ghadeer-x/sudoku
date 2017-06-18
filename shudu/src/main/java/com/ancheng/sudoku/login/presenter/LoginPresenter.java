@@ -45,19 +45,19 @@ public class LoginPresenter {
         query.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
-                if (e != null) {
-                    //查询失败
-                    mILoginActivity.isLoginSucess(false, e);
+//                if (e != null) {
+//                    //查询失败
+//                    mILoginActivity.isLoginSucess(false, e);
+//                } else {
+                if (list != null && list.size() != 0) {
+                    LogUtils.tag(TAG).d(list);
+                    UserManager instance = UserManager.getInstance();
+                    instance.setUser(list.get(0));
+                    mILoginActivity.isLoginSucess(true, null);
                 } else {
-                    if (list.size() != 0) {
-                        LogUtils.tag(TAG).d(list);
-                        UserManager instance = UserManager.getInstance();
-                        instance.setUser(list.get(0));
-                        mILoginActivity.isLoginSucess(true, null);
-                    } else {
-                        mILoginActivity.isLoginSucess(false, null);
-                    }
+                    mILoginActivity.isLoginSucess(false, null);
                 }
+//            }
             }
         });
     }

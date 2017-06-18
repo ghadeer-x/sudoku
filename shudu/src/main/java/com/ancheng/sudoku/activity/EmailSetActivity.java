@@ -55,7 +55,7 @@ public class EmailSetActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (!RegexUtils.isEmail(email) && email == null) {
+                if (!RegexUtils.isEmail(email) || email == null) {
                     ToastUtils.showLong("邮箱格式错误，请重新输入！");
                     return;
                 }
